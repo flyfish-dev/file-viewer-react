@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-06-19T10:08:26.311Z",
+  "generatedAt": "2026-06-19T12:31:17.856Z",
   "sourceBranch": "v3",
-  "sourceCommit": "aa31fe9",
+  "sourceCommit": "3e293b0",
   "organization": "flyfish-dev",
   "framework": "React 18/19",
   "packageName": "@file-viewer/react",
@@ -17,7 +17,7 @@
   "historicalPackages": [
     "@flyfish-group/file-viewer-react"
   ],
-  "sourcePackageDir": "packages/wrappers/react",
+  "sourcePackageDir": "packages/components/react",
   "corePackage": "@file-viewer/core",
-  "coreSourceVisibility": "private-source"
+  "coreSourceVisibility": "public-source"
 }

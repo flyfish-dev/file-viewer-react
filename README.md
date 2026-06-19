@@ -1,6 +1,6 @@
 # @file-viewer/react
 
-标准 React native wrapper 包。组件渲染一个 React 容器，并通过本包本地 controller 调用 `@file-viewer/core` 与 core browser engine 挂载完整预览器；同时提供 ref API、受控参数、生命周期事件和完整预览 options。
+标准 React native 组件包。组件渲染一个 React 容器，并通过本包本地 controller 调用 `@file-viewer/core` 与 core browser engine 挂载完整预览器；同时提供 ref API、受控参数、生命周期事件和完整预览 options。
 
 ```bash
 npm install @file-viewer/react
@@ -28,12 +28,12 @@ export function Preview() {
 
 ## 能力范围
 
-`@file-viewer/react` 与纯 Web、Vue3、Vue2、jQuery 和 Svelte wrapper 共享同一套 native 预览能力，覆盖 PDF、Word、Excel、PPT、OFD、CAD/DWG/DXF/DWF、EPUB/UMD、压缩包、邮件、Markdown、代码高亮、图片、音频、视频、3D 模型、地理数据和结构化数据资产等预览链路。完整格式矩阵和参数说明见官方文档: https://doc.flyfish.dev/guide/formats
+`@file-viewer/react` 与纯 Web、Vue3、Vue2、jQuery 和 Svelte 标准组件包 共享同一套 native 预览能力，覆盖 PDF、Word、Excel、PPT、OFD、CAD/DWG/DXF/DWF、EPUB/UMD、压缩包、邮件、Markdown、代码高亮、图片、音频、视频、3D 模型、地理数据和结构化数据资产等预览链路。完整格式矩阵和参数说明见官方文档: https://doc.flyfish.dev/guide/formats
 
 <!-- FILE_VIEWER_GENERATED:START -->
 ## 生态包矩阵
 
-所有标准 wrapper 都只共享 `@file-viewer/core` 这个总底座，不依赖其他 wrapper。core 内部负责格式矩阵、资源解析、browser/renderers、事件、操作 API、搜索、缩放、打印和导出；各框架 wrapper 自己维护本地 controller、组件生命周期、类型出口和生态交互。
+所有标准组件包都只共享 `@file-viewer/core` 这个总底座，不依赖其他框架组件实现。core 内部负责格式矩阵、资源解析、browser/renderers、事件、操作 API、搜索、缩放、打印和导出；各框架组件包自己维护本地 controller、组件生命周期、类型出口和生态交互。
 
 | 框架 | 标准 npm 包 | 入口格式 | GitHub | Gitee | 兼容历史包 |
 | --- | --- | --- | --- | --- | --- |
@@ -48,7 +48,7 @@ export function Preview() {
 
 ## 格式支持矩阵
 
-共享 core 当前覆盖 23 条预览链路、194 个扩展名。所有格式都按需异步加载，wrapper 层只做生态适配，不互相嵌套。
+共享 core 当前覆盖 23 条预览链路、194 个扩展名。所有格式都按需异步加载，组件层只做生态适配，不互相嵌套。
 
 | 预览链路 | 分类 | 扩展名 | 能力 | 加载 |
 | --- | --- | --- | --- | --- |
@@ -78,5 +78,5 @@ export function Preview() {
 
 完整参数、生命周期 hooks、beforeOperation、主题、水印、搜索、缩放、打印和导出说明见官方文档: https://doc.flyfish.dev/
 
-在线 Demo: https://viewer.flyfish.dev/ 。License: Apache-2.0。二开或商用请保留 Flyfish Viewer 来源说明；如果修复了通用兼容问题，也欢迎贡献回对应 wrapper 仓库。
+在线 Demo: https://viewer.flyfish.dev/ 。License: Apache-2.0。二开或商用请保留 Flyfish Viewer 来源说明；如果修复了通用兼容问题，也欢迎贡献回对应组件仓库。
 <!-- FILE_VIEWER_GENERATED:END -->

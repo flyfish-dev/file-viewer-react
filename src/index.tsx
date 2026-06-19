@@ -1,9 +1,11 @@
 import {
   forwardRef,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useMemo,
   useRef,
+  useState,
   type CSSProperties,
   type HTMLAttributes,
   type MutableRefObject
@@ -14,7 +16,10 @@ import {
   type ViewerController,
   type ViewerControllerHandle,
   type ViewerMountOptions,
-  type ViewerCoreOptions
+  type ViewerCoreOptions,
+  type ViewerEvent,
+  type ViewerEventHandler,
+  type ViewerState
 } from './controller.js'
 import { fileViewerCoreRendererRegistry } from '@file-viewer/core'
 
@@ -42,7 +47,11 @@ export type {
   ViewerToolbarOptions,
   ViewerToolbarPosition,
   ViewerTypstOptions,
-  ViewerWatermarkOptions
+  ViewerWatermarkOptions,
+  ViewerLifecycleContext,
+  ViewerOperationContext,
+  ViewerState,
+  ViewerStateListener
 } from './controller.js'
 
 export interface FileViewerHandle extends ViewerControllerHandle {}
@@ -60,6 +69,18 @@ const defaultStyle: CSSProperties = {
 const viewerCoreOptions: ViewerCoreOptions = {
   registry: fileViewerCoreRendererRegistry
 }
+
+const createInitialViewerState = (): ViewerState => ({
+  loading: false,
+  ready: false,
+  error: null,
+  lastEvent: null,
+  lifecycle: null,
+  availability: null,
+  search: null,
+  zoom: null,
+  location: null
+})
 
 const destroyController = (
   controllerRef: MutableRefObject<ViewerController | null>,
@@ -83,6 +104,7 @@ export const FileViewer = forwardRef<FileViewerHandle, FileViewerProps>((props, 
     size,
     options,
     onEvent,
+    onStateChange,
     style,
     ...containerProps
   } = props
@@ -99,8 +121,9 @@ export const FileViewer = forwardRef<FileViewerHandle, FileViewerProps>((props, 
     type,
     size,
     options,
-    onEvent
-  }), [url, file, buffer, name, filename, type, size, options, onEvent])
+    onEvent,
+    onStateChange
+  }), [url, file, buffer, name, filename, type, size, options, onEvent, onStateChange])
 
   useEffect(() => {
     const container = containerRef.current
@@ -131,5 +154,75 @@ export const FileViewer = forwardRef<FileViewerHandle, FileViewerProps>((props, 
 })
 
 FileViewer.displayName = 'FileViewer'
+
+export interface UseFileViewerStateResult {
+  state: ViewerState;
+  onStateChange: NonNullable<ViewerMountOptions['onStateChange']>;
+  resetState(): void;
+}
+
+export const useFileViewerState = (
+  onEvent?: ViewerEventHandler
+): UseFileViewerStateResult => {
+  const [state, setState] = useState<ViewerState>(() => createInitialViewerState())
+
+  const onStateChange = useCallback((nextState: ViewerState, event?: ViewerEvent) => {
+    setState(nextState)
+    if (event) {
+      onEvent?.(event)
+    }
+  }, [onEvent])
+
+  const resetState = useCallback(() => {
+    setState(createInitialViewerState())
+  }, [])
+
+  return {
+    state,
+    onStateChange,
+    resetState
+  }
+}
+
+export interface UseFileViewerResult {
+  ref: MutableRefObject<FileViewerHandle | null>;
+  props: ViewerMountOptions;
+  state: ViewerState;
+  handle: ViewerControllerHandle;
+  resetState(): void;
+}
+
+export const useFileViewer = (
+  options: ViewerMountOptions = {}
+): UseFileViewerResult => {
+  const ref = useRef<FileViewerHandle | null>(null)
+  const {
+    onEvent,
+    ...viewerOptions
+  } = options
+  const {
+    state,
+    onStateChange,
+    resetState
+  } = useFileViewerState(onEvent)
+
+  const props = useMemo<ViewerMountOptions>(() => ({
+    ...viewerOptions,
+    onStateChange
+  }), [viewerOptions, onStateChange])
+
+  const handle = useMemo<ViewerControllerHandle>(() => createViewerControllerHandle(
+    () => ref.current?.getController() ?? null,
+    () => ref.current?.destroy()
+  ), [])
+
+  return {
+    ref,
+    props,
+    state,
+    handle,
+    resetState
+  }
+}
 
 export default FileViewer
