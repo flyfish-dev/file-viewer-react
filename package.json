@@ -1,6 +1,6 @@
 {
   "name": "@file-viewer/react",
-  "version": "2.0.0",
+  "version": "2.0.6",
   "private": false,
   "type": "module",
   "description": "Standard React component package for Flyfish File Viewer",
@@ -51,7 +51,7 @@
     "react": ">=17 <20"
   },
   "dependencies": {
-    "@file-viewer/core": "^2.0.0"
+    "@file-viewer/core": "^2.0.6"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",
