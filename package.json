@@ -1,6 +1,6 @@
 {
   "name": "@file-viewer/react",
-  "version": "2.0.11",
+  "version": "2.1.1",
   "private": false,
   "type": "module",
   "description": "Standard React component package for Flyfish File Viewer",
@@ -9,7 +9,10 @@
     "document-preview",
     "react",
     "native-viewer",
-    "office-preview"
+    "office-preview",
+    "document-viewer",
+    "file-preview",
+    "self-hosted"
   ],
   "publishConfig": {
     "access": "public",
@@ -26,6 +29,10 @@
   "homepage": "https://github.com/flyfish-dev/file-viewer-react",
   "bugs": {
     "url": "https://github.com/flyfish-dev/file-viewer-react/issues"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://dev.flyfish.group/shop"
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -51,7 +58,7 @@
     "react": ">=17 <20"
   },
   "dependencies": {
-    "@file-viewer/core": "^2.0.11"
+    "@file-viewer/core": "^2.1.1"
   },
   "devDependencies": {
     "@types/react": "^19.2.17",
