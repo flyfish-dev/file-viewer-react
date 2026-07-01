@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-01T04:40:10.588Z",
+  "generatedAt": "2026-07-01T08:23:12.953Z",
   "sourceBranch": "main",
-  "sourceCommit": "5bda28d8",
+  "sourceCommit": "3b2bc309",
   "organization": "flyfish-dev",
   "framework": "React 18/19",
   "packageName": "@file-viewer/react",
