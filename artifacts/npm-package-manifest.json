@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "mode": "runtime-only",
+  "sourceCommit": "d20dc22c19a9101647a8198f46dc4037277da7cc",
+  "aggregateRelease": {
+    "repository": "flyfish-dev/file-viewer",
+    "tag": "v3.2.0",
+    "commit": "8cf8e2795300ada3bb27a090c786bdf2d0211ae4"
+  },
+  "package": {
+    "packageName": "@file-viewer/react",
+    "version": "3.2.0",
+    "tarball": "file-viewer-react-3.2.0.tgz",
+    "tarballSize": 5965,
+    "sha256": "e7acd07fa93b4dddf56ceba41464e781dc1c41197e9d62c61f6e93c74569d845",
+    "fileCount": 8,
+    "integrity": "sha512-FWaljYFKcdTM8+uQvncYEBcLDZbj83lDxkXftmGAIx9c8YqAib+/kgIqnB2bva28ijKhcX9cNelpNtxLRtjK6A==",
+    "license": "Apache-2.0",
+    "releaseArtifact": {
+      "includeTarball": true
+    }
+  }
+}
